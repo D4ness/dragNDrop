@@ -1,6 +1,7 @@
 const takeField = document.querySelector('.take-block');
 const putHereField = document.querySelector('.put_here');
 const putNetField = document.querySelector('.put_net');
+let netCounter = 0;
 
 function generateColor() {
     let color = Math.floor(Math.random() * 16777215).toString(16);
@@ -30,13 +31,17 @@ takeField.onpointerdown = function (event) {
         if ((cordX > 1200) || (cordY > 400) || (cordX < 400)) {
             takeField.removeChild(block);
         } else if ((cordY < 400) && (cordX > 400) && (cordX < 800)) {
-            block.style.position = 'relative';
-            block.style.left = null;
-            block.style.top = null;
-            block.style.zIndex = '99';
-            block.style.backgroundColor = color;
-            takeField.removeChild(block);
-            putNetField.appendChild(block);
+            if (netCounter++ < 16) {
+                block.style.position = 'relative';
+                block.style.left = null;
+                block.style.top = null;
+                block.style.zIndex = '99';
+                block.style.backgroundColor = color;
+                takeField.removeChild(block);
+                putNetField.appendChild(block);
+            } else {
+                takeField.removeChild(block);
+            }
         } else if ((cordY < 400) && (cordX > 800) && (cordX < 1200)) {
             takeField.removeChild(block);
             putHereField.appendChild(block);
