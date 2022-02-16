@@ -1,7 +1,7 @@
 @square_side: 98px;
 @field_side: 404px;
 body {
-  background-color: #eee;
+  background-color: #20232A;
   font: 14px/1.4 Arial, sans-serif;
   margin: 0;
   color: #333;
@@ -13,22 +13,21 @@ body {
 
 .field-title {
   text-align: center;
+  color: #8AB4F8;
 }
 
 .take-block {
   width: @field_side;
   height: @field_side;
-  border: 2px solid black;
+  border: 2px solid #8AB4F8;
   border-right: none;
   cursor: grab;
 }
 
 .square {
-  //float: left;
-  width: @square_side;
+  width: 98px;
   height: @square_side;
   position: absolute;
-  //background-color: cadetblue;
   border: 1px solid black;
   margin: 0 1px 1px 0;
 }
@@ -36,7 +35,7 @@ body {
 .put {
   width: @field_side;
   height: @field_side;
-  border: 2px solid black;
+  border: 2px solid #8AB4F8;
 }
 
 .put_net {
@@ -50,8 +49,4 @@ body {
 
 .hide {
   display: none;
-}
-
-.hovered {
-  background-color: rgba(0, 0, 0, .2);
 }
