@@ -25,19 +25,22 @@ takeField.onpointerdown = function (event) {
         block.style.top = event.clientY - block.offsetHeight / 2 + 'px';
     }
     document.onpointerup = function (event) {
-        function checkPutField(x, y) {
-            return (cordSquareX > x) && (cordSquareX < x + 400) &&
-                (cordSquareY > y) && (cordSquareY < y + 400)
+        function checkPutField(field) {
+            const x = field.offsetLeft;
+            const y = field.offsetTop;
+            const w = field.offsetWidth;
+            const h = field.offsetHeight;
+            return (cordSquareX > x) && (cordSquareX < x + w) &&
+                (cordSquareY > y) && (cordSquareY < y + h)
         }
 
         const cordSquareX = event.clientX;
         const cordSquareY = event.clientY;
-        const cordPutNetX = document.querySelector('.put_net').offsetLeft;
-        const cordPutNetY = document.querySelector('.put_net').offsetTop;
-        const cordPutHereX = document.querySelector('.put_here').offsetLeft;
-        const cordPutHereY = document.querySelector('.put_here').offsetTop;
+        const putNet = document.querySelector('.put_net');
+        const putHere = document.querySelector('.put_here');
 
-        if (checkPutField(cordPutNetX, cordPutNetY)) {
+
+        if (checkPutField(putNet)) {
             if (netCounter++ < 16) {
                 block.style.position = 'relative';
                 block.style.left = null;
@@ -49,7 +52,7 @@ takeField.onpointerdown = function (event) {
             } else {
                 takeField.removeChild(block);
             }
-        } else if (checkPutField(cordPutHereX, cordPutHereY)) {
+        } else if (checkPutField(putHere)) {
             takeField.removeChild(block);
             putHereField.appendChild(block);
         } else {
